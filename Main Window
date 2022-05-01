@@ -1,0 +1,56 @@
+from tkinter import *
+from PIL import Image, ImageTk
+import guiAboutWindow as A
+import guiReportWindow as Re
+import guiRateWindow as Ra
+import PlayWindow as P
+
+
+window=Tk()
+window.title("The Game Station")
+window.geometry("1500x800")
+
+
+bg=PhotoImage(file="MyProject4.png")
+l1 = Label(window, image = bg)
+l1.place(x = -2, y = -2)
+
+photo1= PhotoImage(file="6.png")
+photo2= PhotoImage(file="5.png")
+photo3= PhotoImage(file="7.png")
+photo4= PhotoImage(file="8.png")
+photo5= PhotoImage(file="9.png")
+
+
+
+def openPlay():
+    P.PlayWindow()
+play=Button(window,text="PLAY", image=photo1,bd=5,
+            command = openPlay)
+play.place(relx=0.38,rely=0.5)
+
+
+def Exit():
+    window.destroy()
+Exit=Button(window,text="SETTINGS", image=photo2,bd=5,command=Exit)
+Exit.place(relx=0.38,rely=0.7)
+
+
+def openRate():
+    Ra.Rate()
+rate=Button(window,text="*", image=photo5,bd=3,command=openRate)
+rate.place(relx=0.93,rely=0.875)
+
+
+def openReport():
+    Re.Report()
+report=Button(window,text="|^|", image=photo4,bd=3,command=openReport)
+report.place(relx=0.875,rely=0.875)
+
+def openAbout():
+    A.About() 
+about=Button(window,text="?", image=photo3,bd=3,command=openAbout)
+about.place(relx=0.82,rely=0.875)
+
+
+window.mainloop()
