@@ -1,0 +1,71 @@
+from tkinter import *
+from tkinter import messagebox
+import random
+
+def CupGame():
+    windowcup=Toplevel()
+    windowcup.title("Cup Game")
+    windowcup.geometry("1080x720")
+    windowcup.resizable(False,False)
+    
+    bg4=PhotoImage(file="CupGame.png")
+    l2 = Label(windowcup, image = bg4)
+    l2.place(x = -2, y = -1.5)
+    
+    move={}
+    r = random.randint(1,3)
+    move["comp"]=r
+    def cup1():
+        move["player"]=1
+        if move["player"] == move["comp"]:
+            messagebox.showinfo("NOTICE", "you chose the right cup")
+            windowcup.destroy()
+        else :
+            messagebox.showinfo("NOTICE", "you chose the wrong cup")
+            windowcup.destroy()
+    def cup2():
+        move["player"]=2
+        if move["player"] == move["comp"]:
+            messagebox.showinfo("NOTICE", "you chose the right cup")
+            windowcup.destroy()
+        else :
+            messagebox.showinfo("NOTICE", "you chose the wrong cup")
+            windowcup.destroy()
+    def cup3():
+        move["player"]=3
+        if move["player"] == move["comp"]:
+            messagebox.showinfo("NOTICE", "you chose the right cup")
+            windowcup.destroy()
+        else :
+            messagebox.showinfo("NOTICE", "you chose the wrong cup")
+            windowcup.destroy()
+
+    p1= PhotoImage(file="cup.png")
+    
+    cup1=Button(windowcup,image=p1,command=cup1)
+    cup1.place(relx=0.06,rely=0.35)
+    
+    cup2=Button(windowcup,image=p1,command=cup2)
+    cup2.place(relx=0.36,rely=0.35)
+    
+    cup3=Button(windowcup,image=p1,
+                    command=cup3)
+    cup3.place(relx=0.66,rely=0.35)
+    
+    l1=Label(windowcup,text="   Find the Ball   ",
+         font=("Megrim",40), bg="black",
+         fg="yellow")
+    l1.place(relx=0.3,rely=0.18)
+
+    rules="""Hello Player. Here are the rules of the game.
+There is a ball under one of these cups and you have to guess under
+which cup the ball is.
+If you Guess it right, You Win, else, You Lose.
+Good Luck."""
+
+    showRules=Text(windowcup,width=70,height=5,font=("Megrim",12),bg="red")
+    showRules.insert(INSERT,rules)
+    showRules.config(state=DISABLED)
+    showRules.place(relx=0.2,rely=0.8)
+   
+    windowcup.mainloop()
