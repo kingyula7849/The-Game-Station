@@ -1,0 +1,104 @@
+from tkinter import *
+from PIL import ImageTk,Image
+import random
+from tkinter import messagebox
+import SnakeGame as SG
+import YouLose as YL
+b=0
+def GuessCode():
+    
+    windowGC = Toplevel()
+    windowGC.title("Guess The Code")
+    windowGC.geometry("515x400")
+    windowGC.resizable(False,False)
+
+    bg4=PhotoImage(file="My project (15).png")
+    l1 = Label(windowGC, image = bg4)
+    l1.place(x = -2, y = -1.5)
+
+    l2 = Label(windowGC,text="trail no. ",font=("Megrim",20),bg="purple",fg="white")
+    l2.place(relx=0.27,rely=0.5)
+
+    s1=Spinbox(windowGC,from_= 0, to = 9,font=("Megrim",20))
+    s1.place(relx=0.2,rely=0.2)
+
+    l3 = Label(windowGC,text="              ",font=("Megrim",15),bg="violet",fg="white")
+    l3.place(relx=0.55,rely=0.51)
+    
+    
+        
+    
+    
+    rules="""Rules: -
+1. you have to choose a no. between 0 - 9.
+2. if that code is correct, you win.
+3. if not than you will get hints.
+4. you will get 3 chances."""
+
+    showRules=Text(windowGC,width=50,height=4,font=("Megrim",12),bg="#b80f0a")
+    showRules.insert(INSERT,rules)
+    showRules.config(state=DISABLED)
+    showRules.place(relx=0.06,rely=0.7)
+
+    c = random.randint(0,9)
+
+    def closeGC():
+        windowGC.destroy()
+        YL.YouLose()
+        
+    def output():
+        global b
+        a=int(s1.get())
+        
+        b+=1  
+        l2.config(text="trail no. "+str(b),font=("Megrim",20))
+            
+            
+        if c == a:
+            sg="""Now with the help of the space worm antivirus program,
+eat the required number of bugs implanted in the system."""
+            l3.config(text="correct",font=("Megrim",15))
+            
+            messagebox.showinfo("NOTICE","Correct Code.")
+            messagebox.showinfo("NOTICE",sg)
+            windowGC.destroy()
+            messagebox.showinfo("CONTROLS","Use 'w' , 'a' , 's' & 'd' to control the Space Worm")
+            SG.openSG()
+            
+            
+            b-=1
+           
+        elif c != a :
+            d = c - a
+            if d > 0 :
+                if d >5:
+                    l3.config(text="Too Low.",font=("Megrim",15))
+                    
+                elif d<=3:
+                    l3.config(text="Too Close.",font=("Megrim",15))
+                    
+                elif d>3 and d<= 5:
+                    l3.config(text="Low.",font=("Megrim",15))
+                    
+            elif d < 0:
+                d = d*-1
+                if d >5:
+                    l3.config(text="Too High.",font=("Megrim",15))
+                    
+                elif d<=3:
+                    l3.config(text="Too Close.",font=("Megrim",15))
+                    
+                elif d>3 and d<= 5:
+                    l3.config(text="High.",font=("Megrim",15))
+                    
+                
+        if b >=3:
+            messagebox.showinfo("NOTICE","You Lose. The code was "+str(c))
+            b=0
+            closeGC()
+    b=0
+    enter=Button(windowGC,text="ENTER",font=("Megrim",20),command=output,bg="#b80f0a")
+    enter.place(relx=0.4,rely=0.32)
+
+    
+    windowGC.mainloop()
