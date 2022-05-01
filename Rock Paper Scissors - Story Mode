@@ -1,0 +1,86 @@
+from tkinter import *
+from PIL import ImageTk,Image
+import random
+from tkinter import messagebox
+import TheEnd as T
+import YouLose as YL
+def DefeatHedeon():
+    windowDH = Toplevel()
+    windowDH.title("Defeat Hedeon")
+    windowDH.geometry("1080x720")
+    windowDH.resizable(False,False)
+
+    bg4=PhotoImage(file="defeat hedeon.png")
+    l1 = Label(windowDH, image = bg4)
+    l1.place(x = -2, y = -1.5)
+
+
+    move={}
+    l1={1:"Asteroid",2:"Laser",3:"Mirror"}
+    r = random.randint(1,3)
+    move["comp"]=r
+
+    l2=Label(windowDH,text="choose wisely",width=42,height=2,bg ="grey"
+             ,font=("Megrim",30))
+    l2.place(relx=0.06,rely=0.18)
+    
+    def win():
+        windowDH.destroy()
+        T.TheEnd()
+
+    def lost():
+        windowDH.destroy()
+        YL.YouLose()
+    def asteroid():
+        move["player"]=1
+        if move["player"] == move["comp"]:
+            messagebox.showinfo("Hedeon chooses asteroid", "Its a Tie!!     :/                                  ")
+            windowDH.deiconify()
+            r = random.randint(1,3)
+            move["comp"]=r
+        elif move["comp"] == 2 :
+            messagebox.showinfo("Hedeon chooses laser",     "You Lose!!     :(                                 ")
+            lost()
+        elif move["comp"] == 3 :
+            messagebox.showinfo("Hedeon chooses mirror",     "You Win!!     :D                                 ")
+            win()
+    def laser():
+        move["player"]=2
+        if move["player"] == move["comp"]:
+            messagebox.showinfo("Hedeon chooses laser",  "Its a Tie!!   :/                              ")
+            windowDH.deiconify()
+            r = random.randint(1,3)
+            move["comp"]=r
+        elif move["comp"] == 3 :
+            messagebox.showinfo("Hedeon chooses mirror", "You Lose!!    :(                               ")
+            lost()
+        elif move["comp"] == 1 :
+            messagebox.showinfo("Hedeon chooses asteroid", "You Win!!   :D                                ")
+            win()
+    def mirror():
+        move["player"]=3
+        if move["player"] == move["comp"]:
+            messagebox.showinfo("Hedeon chooses mirror",  "Its a Tie!!      :/                            ")
+            windowDH.deiconify()
+            r = random.randint(1,3)
+            move["comp"]=r
+        elif move["comp"] == 1 :
+            messagebox.showinfo("Hedeon chooses asteroid", "You Yose!!      :(                                  ")
+            lost()
+        elif move["comp"] == 2 :
+            messagebox.showinfo("Hedeon chooses laser", "You Win!!      :D                                  ")
+            win()
+    
+    photo1= PhotoImage(file="aste.png")
+    asteroid=Button(windowDH,image=photo1,relief=RAISED  ,bd=4,command = asteroid)
+    asteroid.place(relx=0.057,rely=0.4)
+
+    photo2= PhotoImage(file="laser.png")
+    laser=Button(windowDH,image=photo2,relief=RAISED  ,bd=4,command = laser)
+    laser.place(relx=0.357,rely=0.4)
+
+    photo3= PhotoImage(file="mirror.png")
+    mirror=Button(windowDH,image=photo3,relief=RAISED  ,bd=4,command = mirror)
+    mirror.place(relx=0.657,rely=0.4)
+
+    windowDH.mainloop()
