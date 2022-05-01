@@ -1,0 +1,43 @@
+from tkinter import *
+from PIL import ImageTk,Image
+from tkinter import messagebox
+
+def Report():
+    windowRe=Toplevel()
+    windowRe.title("Report")
+    windowRe.geometry("425x490")
+    windowRe.resizable(width=False,height=False)
+
+    img =Image.open("bg report.png")
+    bg = ImageTk.PhotoImage(img)
+
+    label = Label(windowRe, image=bg)
+    label.image = img
+    label.place(x = -2,y = -2)
+    
+    ch=StringVar(windowRe, "1")
+
+    Radiobutton(windowRe,text="Glitch/Bug                               ",value="1",variable=ch,background ="#6441a4",font="Megrim").place(relx=0.2,rely=0.21)
+    Radiobutton(windowRe,text="any improvement suggestions  ",
+                value="2",variable=ch,background ="#6441a4",
+                font="Megrim").place(relx=0.2,rely=0.27)
+    Radiobutton(windowRe,text="Saw any Inappropriate Feature",
+                value="3",variable=ch,background ="#6441a4",
+                font="Megrim").place(relx=0.2,rely=0.33)
+
+    l1=Label(windowRe,text="            Explain in Detail           ",bg="#66d8ff",pady=6,font="Megrim")
+    l1.place(relx=0.2,rely=0.48)
+
+    txtreport = Text(windowRe,height = 7, width = 30)
+    txtreport.place(relx= 0.2,rely =0.56)
+
+    def Submit():
+        windowRe.destroy()
+        messagebox.showinfo("NOTICE","""Thank You for reporting us.
+We will try our best to fix the Problem.""")
+
+    submit=Button(windowRe,text="Submit",font="Megrim",
+                  command = Submit,bg="#f86e61")
+    submit.place(relx=0.42,rely=0.85)
+
+    windowRe.mainloop()
