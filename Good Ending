@@ -1,0 +1,21 @@
+from tkinter import *
+from PIL import ImageTk,Image
+
+
+def TheEnd():
+    windowTE = Toplevel()
+    windowTE.title("The End")
+    windowTE.geometry("1080x720")
+    windowTE.resizable(False,False)
+    
+    bg4=PhotoImage(file="TheEnd.png")
+    l1 = Label(windowTE, image = bg4)
+    l1.place(x = -2, y = -1.5)
+
+    def closeEnd():
+        windowTE.destroy()
+    b1=Button(windowTE,text="Return to the Main Window",
+              font=("Megrim",20),command=closeEnd,bg="#0f52ba",
+              bd=3,relief = RAISED)
+    b1.place(relx=0.33,rely=0.82)
+    windowTE.mainloop()
