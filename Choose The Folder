@@ -1,0 +1,76 @@
+from tkinter import *
+from tkinter import messagebox
+import random
+import GuessCode as GC
+import YouLose as YL
+def FolderGUI():
+    windowfg=Toplevel()
+    windowfg.title("Antivirus Folder")
+    windowfg.geometry("1080x720")
+    windowfg.resizable(False,False)
+    
+    bg4=PhotoImage(file="FolderGUI.png")
+    l2 = Label(windowfg, image = bg4)
+    l2.place(x = -2, y = -1.5)
+
+    
+    def openGuess():
+        windowfg.destroy()
+        GC.GuessCode()
+        
+
+    def lost():
+        windowfg.destroy()
+        YL.YouLose()
+    
+    move={}
+    r = random.randint(1,3)
+    move["comp"]=r
+    def f1():
+        move["player"]=1
+        if move["player"] == move["comp"]:
+            messagebox.showinfo("Hedeon says", "you chose the right folder")
+            openGuess()
+        else :
+            messagebox.showinfo("Hedeon says", "you chose the wrong folder")
+            lost()
+    def f2():
+        move["player"]=2
+        if move["player"] == move["comp"]:
+            messagebox.showinfo("Hedeon says", "you chose the right folder")
+            openGuess()
+        else :
+            messagebox.showinfo("Hedeon says", "you chose the wrong folder")
+            lost()
+    def f3():
+        move["player"]=3
+        if move["player"] == move["comp"]:
+            messagebox.showinfo("Hedeon says", "you chose the right folder")
+            openGuess()
+        else :
+            messagebox.showinfo("Hedeon says", "you chose the wrong folder")
+            lost()
+
+    
+    p1= PhotoImage(file="f n 1.png")
+    folder1=Button(windowfg,text="f1",command=f1,image=p1,font=("Megrim",20),bd=0,bg="#111111")
+    folder1.place(relx=0.057,rely=0.3)
+
+    p2= PhotoImage(file="f n 2.png")
+    folder2=Button(windowfg,text="f2",command=f2,image=p2,font=("Megrim",20),bd=0,bg="#111111")
+    folder2.place(relx=0.375,rely=0.3)
+
+    p3= PhotoImage(file="f n 3.png")
+    folder3=Button(windowfg,text="f3",command=f3,image=p3,font=("Megrim",20),bd=0,bg="#111111")
+    folder3.place(relx=0.693,rely=0.3)
+
+    rules="""Rules =>
+Choose the correct antivirus folder.
+If you open the wrong Folder you will lose and Hedeon will destroy the Spaceship."""
+    
+    showRules=Text(windowfg,width=78,height=3,font=("Megrim",15))
+    showRules.insert(INSERT,rules)
+    showRules.config(state=DISABLED)
+    showRules.place(relx=0.1,rely=0.776)
+    
+    windowfg.mainloop()
